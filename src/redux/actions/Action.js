@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const productsApi = createAsyncThunk(
-    'ebayProducts/productsApi',
+    'productsApi',
     async () => {
         try {
             const { data } = await axios.get('https://api.escuelajs.co/api/v1/products');
@@ -14,7 +14,7 @@ export const productsApi = createAsyncThunk(
 );
 
 export const productByIdApi = createAsyncThunk(
-    'ebayProducts/productByIdApi',
+    'productByIdApi',
     async (id) => {
         try {
             const { data } = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`);
@@ -26,7 +26,7 @@ export const productByIdApi = createAsyncThunk(
 );
 
 export const productsRelatedByIdApi = createAsyncThunk(
-    'ebayProducts/productsRelatedByIdApi',
+    'productsRelatedByIdApi',
     async (id) => {
         try {
             const { data } = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}/related`);
@@ -36,3 +36,27 @@ export const productsRelatedByIdApi = createAsyncThunk(
         }
     }
 );
+
+export const categoriesApi = createAsyncThunk(
+    'categoriesApi',
+    async () => {
+        try {
+            const {data} = await axios.get('https://api.escuelajs.co/api/v1/categories');
+            return data;
+        } catch (error) {
+            return error.message
+        }
+    }
+)
+
+export const categoriesByIdApi = createAsyncThunk(
+    'categoryByIdApi',
+    async (id) => {
+        try {
+            const {data} = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}`)
+            return data;
+        } catch (error) {
+            return error.message
+        }
+    }
+)

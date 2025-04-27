@@ -1,19 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productsApi, productByIdApi, productsRelatedByIdApi } from "../actions/Action";
+import { productsApi, productByIdApi, productsRelatedByIdApi, categoriesApi, categoriesByIdApi } from "../actions/Action";
 
 const initialState = {
     products: [],
     productById: {},
     productsRelatedById: [],
+    categories: [],
+    categoriesById: {},
     loadings: {
         products: false,
         productById: false,
-        relatedProducts: false
+        relatedProducts: false,
+        categoriesloading: false,
+        categoriesByIdLoading: false
     },
     errors: {
         products: null,
         productById: null,
-        relatedProducts: null
+        relatedProducts: null,
+        categorieserror: null,
+        categoriesByIdError: null
     }
 }
 
@@ -57,7 +63,31 @@ const productSlice = createSlice({
             })
             .addCase(productsRelatedByIdApi.rejected, (state, action)=>{
                 state.loadings.relatedProducts = false;
-                state.errors.relatedProducts = action.payload
+                state.errors.relatedProducts = action.payload;
+            })
+            .addCase(categoriesApi.pending, (state)=>{
+                state.loadings.categoriesloading = true;
+                state.errors.categorieserror = null;
+            })
+            .addCase(categoriesApi.fulfilled, (state, action)=>{
+                state.loadings.categoriesloading = false;
+                state.categories = action.payload;
+            })
+            .addCase(categoriesApi.rejected, (state, action)=>{
+                state.loadings.categoriesloading = false;
+                state.errors.categorieserror = action.payload;
+            })
+            .addCase(categoriesByIdApi.pending, (state)=>{
+                state.loadings.categoriesByIdLoading = true;
+                state.errors.categoriesByIdError = null;
+            })
+            .addCase(categoriesByIdApi.fulfilled, (state, action)=>{
+                state.loadings.categoriesByIdLoading = false;
+                state.categoriesById = action.payload;
+            })
+            .addCase(categoriesByIdApi.rejected, (state, action)=>{
+                state.loadings.categoriesByIdLoading = false;
+                state.errors.categoriesByIdError = action.payload;
             })
     }
 })
