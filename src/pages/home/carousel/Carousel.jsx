@@ -56,7 +56,7 @@ function Carousel() {
                         className="flex-shrink-0 w-full h-full rounded-xl relative bg-cover bg-center"
                         style={{ backgroundImage: 'url(https://api.lorem.space/image/furniture?w=640&h=480&r=5902)' }}
                     >
-                        <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white p-6">
+                        <div className="absolute inset-0 bg-pink-800 bg-opacity-30 flex flex-col items-center justify-center text-white p-6">
                             <h2 className="text-4xl font-bold mb-2">Mountain View</h2>
                             <p className="text-xl">Explore the beautiful peaks</p>
                         </div>
@@ -70,7 +70,7 @@ function Carousel() {
                         <div className="absolute inset-0 bg-green-900 bg-opacity-20 flex flex-col items-start justify-end text-green-100 p-6 pb-10 pl-10">
                             <h2 className="text-3xl font-bold mb-2">Forest Trail</h2>
                             <p className="text-lg">Walk through nature's path</p>
-                            <button className="mt-4 px-4 py-2 bg-green-700 rounded-lg hover:bg-green-600 transition">
+                            <button className="mt-4 px-4 py-2 bg-green-700 rounded-lg hover:bg-green-600 transition cursor-pointer">
                                 Explore Now
                             </button>
                         </div>
@@ -109,7 +109,7 @@ function Carousel() {
                         <button
                             key={index}
                             onClick={() => goToSlide(index)}
-                            className="text-white focus:outline-none"
+                            className="text-white focus:outline-none cursor-pointer"
                             aria-label={`Go to slide ${index + 1}`}
                         >
                             {index === currentIndex ? (
@@ -125,7 +125,7 @@ function Carousel() {
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-opacity-40 rounded-full p-2">
                     <button
                         onClick={goToPrev}
-                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition"
+                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition cursor-pointer"
                         aria-label="Previous slide"
                     >
                         <GoChevronLeft className="w-5 h-5" />
@@ -133,7 +133,7 @@ function Carousel() {
 
                     <button
                         onClick={goToNext}
-                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition"
+                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition cursor-pointer"
                         aria-label="Next slide"
                     >
                         <GoChevronRight className="w-5 h-5" />
@@ -141,7 +141,7 @@ function Carousel() {
 
                     <button
                         onClick={togglePlayPause}
-                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition"
+                        className="text-black bg-white p-1 hover:bg-opacity-20 rounded-full transition cursor-pointer"
                         aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
                     >
                         {isPlaying ? (
