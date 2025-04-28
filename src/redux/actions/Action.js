@@ -44,7 +44,7 @@ export const categoriesApi = createAsyncThunk(
             const {data} = await axios.get('https://api.escuelajs.co/api/v1/categories');
             return data;
         } catch (error) {
-            return error.message
+            return error.message;
         }
     }
 )
@@ -56,7 +56,19 @@ export const categoriesByIdApi = createAsyncThunk(
             const {data} = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}`)
             return data;
         } catch (error) {
-            return error.message
+            return error.message;
+        }
+    }
+)
+
+export const productsByCategoryApi = createAsyncThunk(
+    'productsByCategoryApi',
+    async (id) => {
+        try {
+            const {data} = await axios.get(`https://api.escuelajs.co/api/v1/categories/${id}/products`)
+            return data;
+        } catch (error) {
+            return error.message;
         }
     }
 )

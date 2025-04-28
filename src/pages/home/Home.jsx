@@ -1,8 +1,13 @@
-import React from 'react'
+import Carousel from "./carousel/Carousel"
+import Category from "./categories/Category"
 
 function Home() {
+
   return (
-    <div>Home</div>
+    <div className='flex flex-col'>
+          <Carousel/>
+          <Category/>
+    </div>
   )
 }
 

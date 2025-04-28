@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productsApi, productByIdApi, productsRelatedByIdApi, categoriesApi, categoriesByIdApi } from "../actions/Action";
+import { productsApi, productByIdApi, productsRelatedByIdApi, categoriesApi, categoriesByIdApi, productsByCategoryApi } from "../actions/Action";
 
 const initialState = {
     products: [],
@@ -7,19 +7,22 @@ const initialState = {
     productsRelatedById: [],
     categories: [],
     categoriesById: {},
+    productsByCategory: [],
     loadings: {
         products: false,
         productById: false,
         relatedProducts: false,
         categoriesloading: false,
-        categoriesByIdLoading: false
+        categoriesByIdLoading: false,
+        productsBycategoryLoading: false
     },
     errors: {
         products: null,
         productById: null,
         relatedProducts: null,
         categorieserror: null,
-        categoriesByIdError: null
+        categoriesByIdError: null,
+        productsByCategoryError : null
     }
 }
 
@@ -89,6 +92,19 @@ const productSlice = createSlice({
                 state.loadings.categoriesByIdLoading = false;
                 state.errors.categoriesByIdError = action.payload;
             })
+            .addCase(productsByCategoryApi.pending, (state)=>{
+                state.loadings.productsBycategoryLoading = true;
+                state.errors.productsByCategoryError = null;
+            })
+            .addCase(productsByCategoryApi.fulfilled, (state, action)=>{
+                state.loadings.productsBycategoryLoading = false;
+                state.productsByCategory = action.payload;
+            })
+            .addCase(productsByCategoryApi.rejected, (state, action)=>{
+                state.loadings.productsBycategoryLoading = false;
+                state.errors.productsByCategoryError = action.payload;
+            })
+            
     }
 })
 

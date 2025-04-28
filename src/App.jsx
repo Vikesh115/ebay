@@ -9,6 +9,10 @@ import Cart from "./pages/cart/Cart";
 import Wishlist from "./pages/wishlist/Wishlist";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+import ProductsByCategory from "./pages/home/categories/ProductsByCategory";
+import SearchBar from "./components/searchbar/SearchBar";
+import ProductDetails from "./pages/home/products/ProductDetails";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
@@ -43,14 +47,17 @@ function App() {
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
+      <SearchBar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/cart" element={<AuthRoute><Cart/></AuthRoute>}/>
           <Route path="/wishlist" element={<AuthRoute><Wishlist/></AuthRoute>}/>
-          <Route path="/footer" element={<Footer/>}/>
+          <Route path="/categoryProducts/:id" element={<ProductsByCategory/>}/>
+          <Route path="/details/:id" element={<ProductDetails/>}/>
         </Routes>
+        <Footer/>
       </>
   )
 }
