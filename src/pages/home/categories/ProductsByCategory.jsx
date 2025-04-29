@@ -21,7 +21,7 @@ function ProductsByCategory() {
             <div className='text-[.55rem]'><Breadcrumb /></div>
             <div className='flex flex-col px-5 gap-10 py-4'>
                 {productsByCategory.map((item) => (
-                    <div className='flex flex-col gap-2 flex-wrap'>
+                    <div key={item.id} className='flex flex-col gap-2 flex-wrap'>
                         <p>{item.title}</p>
                         <div className='flex flex-row gap-6'>
                             {item?.images?.map((img) => (

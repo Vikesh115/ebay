@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 function Category() {
 
     const { categories } = useSelector((state) => state.product)
-    console.log(categories);
 
     const firstFiveCategories = categories.slice(0, 5);
 

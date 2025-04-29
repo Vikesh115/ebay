@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { productsApi, categoriesApi } from "./redux/actions/Action";
 import { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import Footer from "./pages/footer/footer";
@@ -12,47 +12,60 @@ import Signup from "./pages/signup/Signup";
 import ProductsByCategory from "./pages/home/categories/ProductsByCategory";
 import SearchBar from "./components/searchbar/SearchBar";
 import ProductDetails from "./pages/home/products/ProductDetails";
+import { logoutUser } from "./redux/slice/AuthSlice";
+import { auth, onAuthStateChanged } from "./firebase";
+import { setUser, clearUser } from "./redux/slice/AuthSlice";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
-
-  const {categories, products} = useSelector((state)=>state.product);
-  console.log(categories);
-  console.log(products);
+  const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
-    dispatch(productsApi())
-  }, [dispatch])
+    dispatch(productsApi());
+    dispatch(categoriesApi());
 
-  useEffect(()=>{
-    dispatch(categoriesApi())
-  },[dispatch])
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName || user.email.split('@')[0]
+        }));
+      } else {
+        dispatch(clearUser());
+      }
+      setAuthChecked(true);
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('token');
+    dispatch(logoutUser());
   };
 
   const AuthRoute = ({ children }) => {
     const location = useLocation();
-    if (!isLoggedIn) {
-      return (
-        <Navigate to="/login" state={{ from: location }} />
-      )
+    if (!auth.currentUser) {
+      return <Navigate to="/login" state={{ from: location }} replace />;
     }
     return children;
   };
 
+  if (!authChecked) {
+    return <div>Loading...</div>;
+  }
+
+
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
+      <Navbar  handleLogout={handleLogout}/>
       <SearchBar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/cart" element={<AuthRoute><Cart/></AuthRoute>}/>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/cart" element={<Cart/>}/>
           <Route path="/wishlist" element={<AuthRoute><Wishlist/></AuthRoute>}/>
           <Route path="/categoryProducts/:id" element={<ProductsByCategory/>}/>
           <Route path="/details/:id" element={<ProductDetails/>}/>

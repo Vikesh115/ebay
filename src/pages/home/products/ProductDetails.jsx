@@ -4,6 +4,8 @@ import { productByIdApi, productsRelatedByIdApi } from '../../../redux/actions/A
 import { useDispatch, useSelector } from 'react-redux';
 import Breadcrumb from '../../../components/breadcrumb/BreadCrumb';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../../../redux/slice/CartSlice';
+import { addToWishlist } from '../../../redux/slice/WishlistSlice';
 
 function ProductDetails() {
     const dispatch = useDispatch()
@@ -15,6 +17,16 @@ function ProductDetails() {
         dispatch(productByIdApi(id))
         dispatch(productsRelatedByIdApi(id))
     }, [id, dispatch])
+
+    const handleCart = (item) =>{
+        console.log("Cart item:- ",item);
+        dispatch(addToCart(item))
+    }
+
+    const handleWishlist =(item) =>{
+        console.log("Wishlist item:- ", item);
+        dispatch(addToWishlist(item))
+    }
 
     return (
         <div>
@@ -32,11 +44,9 @@ function ProductDetails() {
                         />
                     )}
                 </div>
-
                 {/* Product Info */}
                 <div className="flex-1 flex flex-col">
                     <h1 className="text-2xl font-bold text-gray-900">{productById?.title}</h1>
-
                     <div className="my-4">
                         <h2 className="text-lg font-semibold text-gray-800 border-b pb-1">Details</h2>
 
@@ -57,17 +67,15 @@ function ProductDetails() {
                                 </p>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="mt-4">
-                        <h2 className="text-lg font-semibold text-gray-800 border-b pb-1">Description</h2>
-                        <p className="mt-3 text-gray-700 leading-relaxed">
-                            {productById?.description}
-                        </p>
+                        {/* Add to cart & wishlist */}
+                        <div className='flex flex-col gap-2'>
+                            <button onClick={() => handleCart(productById)} className='bg-blue-600 text-white py-2 rounded-2xl cursor-pointer'>Add to cart</button>
+                            <button onClick={() => handleWishlist(productById)} className='text-blue-600 py-2 rounded-2xl border border-blue-600 cursor-pointer'>Add to wishlist</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            {/* Related products */}
             <div className="w-full">
                 <div className="flex flex-wrap gap-4 p-5">
                     {productsRelatedById.map((related) => (
@@ -91,6 +99,13 @@ function ProductDetails() {
                         </div>
                     ))}
                 </div>
+            </div>
+            {/* Description of perticular product */}
+            <div className="mt-2 px-5">
+                <h2 className="text-lg font-semibold text-gray-800 border-b pb-1">Description</h2>
+                <p className="mt-3 text-gray-700 leading-relaxed">
+                    {productById?.description}
+                </p>
             </div>
         </div>
     )
