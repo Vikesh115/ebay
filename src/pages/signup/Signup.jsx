@@ -54,7 +54,7 @@ function Signup() {
       <div className='md:flex hidden md:w-[40%] w-[100%] md:pt-5 justify-center'>
         <img src="https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5598.jpg?w=740" alt="" />
       </div>
-      <div className="flex justify-center md:pt-5 mt-24 md:mt-0 md:w-[40%] w-[100%]">
+      <div className="flex justify-center md:pt-5 md:mt-0 md:w-[40%] w-[100%]">
         <form
           className="bg-white p-8 rounded-lg shadow-2xl w-96"
           onSubmit={handleSubmit}

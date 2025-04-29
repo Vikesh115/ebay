@@ -50,7 +50,7 @@ function Login() {
 
   return (
     <div className='md:flex w-[100%] gap-3 justify-center items-center'>
-      <div className="flex justify-center md:pt-5 mt-24 md:mt-0 md:w-[40%] w-[100%]">
+      <div className="flex justify-center md:pt-5 md:mt-0 md:w-[40%] w-[100%]">
         <form
           className="bg-white p-8 rounded-lg shadow-2xl w-96"
           onSubmit={handleLogin}
