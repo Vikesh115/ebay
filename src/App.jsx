@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
-import Footer from "./pages/footer/footer";
 import Cart from "./pages/cart/Cart";
 import Wishlist from "./pages/wishlist/Wishlist";
 import Login from "./pages/login/Login";
@@ -15,6 +14,7 @@ import ProductDetails from "./pages/home/products/ProductDetails";
 import { logoutUser } from "./redux/slice/AuthSlice";
 import { auth, onAuthStateChanged } from "./firebase";
 import { setUser, clearUser } from "./redux/slice/AuthSlice";
+import Footers from "./pages/footer/Footers";
 
 function App() {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ function App() {
           <Route path="/categoryProducts/:id" element={<ProductsByCategory/>}/>
           <Route path="/details/:id" element={<ProductDetails/>}/>
         </Routes>
-        <Footer/>
+        <Footers/>
       </>
   )
 }

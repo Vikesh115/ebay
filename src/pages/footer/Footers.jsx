@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Footer() {
+function Footers() {
     return (
         <>
         <footer className="md:block hidden bg-gray-100 border-t border-gray-300 text-xs">
@@ -106,4 +106,4 @@ function Footer() {
     );
 }
 
-export default Footer;
+export default Footers;
