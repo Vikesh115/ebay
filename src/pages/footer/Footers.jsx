@@ -6,7 +6,7 @@ function Footers() {
         <>
         <footer className="md:block hidden bg-gray-100 border-t border-gray-300 text-xs">
             {/* Top Section */}
-            <div className="max-w-7xl mx-auto px-6 pt-6">
+            <div className="max-w-7xl px-6 pt-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
                     {/* Buy Section */}
                     <div>
