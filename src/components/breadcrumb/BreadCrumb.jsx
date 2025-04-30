@@ -7,7 +7,7 @@ function Breadcrumb() {
 
     return (
         <>
-        <div className=" pt-2 pl-4 p-4  ">
+        <div className=" pt-2 pl-6 p-4  ">
             {pathnames.length > 0 && (
                 <>
                     <Link to="/" className="text-gray-500">eBay</Link>

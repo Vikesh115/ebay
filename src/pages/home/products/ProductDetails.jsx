@@ -18,12 +18,12 @@ function ProductDetails() {
         dispatch(productsRelatedByIdApi(id))
     }, [id, dispatch])
 
-    const handleCart = (item) =>{
-        console.log("Cart item:- ",item);
+    const handleCart = (item) => {
+        console.log("Cart item:- ", item);
         dispatch(addToCart(item))
     }
 
-    const handleWishlist =(item) =>{
+    const handleWishlist = (item) => {
         console.log("Wishlist item:- ", item);
         dispatch(addToWishlist(item))
     }
@@ -75,9 +75,20 @@ function ProductDetails() {
                     </div>
                 </div>
             </div>
+
+            {/* Description of perticular product */}
+            <div className="mt-2 px-5">
+                <h2 className="text-lg font-semibold text-gray-800 border-b pb-1">Description</h2>
+                <p className="mt-3 text-gray-700 leading-relaxed">
+                    {productById?.description}
+                </p>
+            </div>
+
             {/* Related products */}
+            <p className='px-6 mt-4 font-bold'>Similar Products</p>
+            {/* Desktop view device >= 768px */}
             <div className="w-full">
-                <div className="flex flex-wrap gap-4 p-5">
+                <div className="md:flex hidden flex-wrap gap-4 p-5">
                     {productsRelatedById.map((related) => (
                         <div
                             key={related.id}
@@ -96,16 +107,41 @@ function ProductDetails() {
                                 <p className="font-medium text-gray-800 line-clamp-2">{related?.title}</p>
                                 <p className="text-lg font-semibold text-gray-900">${related?.price}</p>
                             </div>
+                            <button onClick={() => handleCart(productById)} className='bg-blue-600 text-white py-2 rounded-2xl cursor-pointer'>Add to cart</button>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* Description of perticular product */}
-            <div className="mt-2 px-5">
-                <h2 className="text-lg font-semibold text-gray-800 border-b pb-1">Description</h2>
-                <p className="mt-3 text-gray-700 leading-relaxed">
-                    {productById?.description}
-                </p>
+            {/* Mobile view device < 768px */}
+            <div className='md:hidden flex px-6 overflow-x-auto pb-4 hide-scrollbar'>
+                <div className='flex space-x-4 flex-nowrap'>
+                    {productsRelatedById.map((related) => (
+                        <div
+                            key={related.id}
+                            className="flex-shrink-0 w-40 flex flex-col gap-2" // Fixed width for consistent cards
+                        >
+                            <Link to={`/details/${related.id}`} className="block">
+                                {related?.images?.[0] && (
+                                    <img
+                                        src={related.images[0]}
+                                        alt={related?.title || 'Related product'}
+                                        className="w-full h-48 object-cover rounded-lg hover:opacity-90 transition-opacity"
+                                    />
+                                )}
+                            </Link>
+                            <div className="p-2">
+                                <p className="font-medium text-gray-800 line-clamp-2 text-sm">{related?.title}</p>
+                                <p className="text-lg font-semibold text-gray-900">${related?.price}</p>
+                            </div>
+                            <button
+                                onClick={() => handleCart(related)} // Changed from productById to related
+                                className='bg-blue-600 text-white py-2 rounded-2xl cursor-pointer text-sm hover:bg-blue-700 transition-colors'
+                            >
+                                Add to cart
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
