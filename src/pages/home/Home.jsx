@@ -20,7 +20,7 @@ function Home() {
                 Don't miss your chance to save on items you've been looking for
               </p>
             </div>
-            <Link to={'/login'} className="bg-white text-green-900 hover:bg-gray-100 font-medium rounded-full px-5 py-2 md:px-6 md:py-2.5 text-sm transition-colors duration-200 shadow-sm">
+            <Link to={'/'} className="bg-white text-green-900 hover:bg-gray-100 font-medium rounded-full px-5 py-2 md:px-6 md:py-2.5 text-sm transition-colors duration-200 shadow-sm">
               Explore Now →
             </Link>
           </div>
