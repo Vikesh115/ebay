@@ -50,7 +50,7 @@ Icons: React Icons
 
 ### run command
 
-https://github.com/Vikesh115/ebay.git
+git clone https://github.com/Vikesh115/ebay.git
 
 npm install
 
