@@ -15,6 +15,7 @@ import { logoutUser } from "./redux/slice/AuthSlice";
 import { auth, onAuthStateChanged } from "./firebase";
 import { setUser, clearUser } from "./redux/slice/AuthSlice";
 import Footers from "./pages/footer/Footers";
+import LoadingSpinner from "./components/loadspinner/Loadspinner";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function App() {
   };
 
   if (!authChecked) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>;
   }
 
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/wishlist" element={<AuthRoute><Wishlist/></AuthRoute>}/>
           <Route path="/categoryProducts/:id" element={<ProductsByCategory/>}/>
           <Route path="/details/:id" element={<ProductDetails/>}/>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footers/>
       </>

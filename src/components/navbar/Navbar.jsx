@@ -18,7 +18,7 @@ function Navbar({ handleLogout }) {
     return (
         <>
             {/* Screensize >= 768px */}
-            <div className='md:flex hidden justify-between px-5 py-1 font-medium text-[.55rem] border-b border-gray-200 w-full'>
+            <div className='md:flex hidden justify-between px-5 py-1 font-medium text-[.65rem] border-b border-gray-200 w-full'>
                 <div className='flex gap-3 items-center'>
                     {user ? (
                         <div className="relative inline-block group">

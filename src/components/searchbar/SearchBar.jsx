@@ -29,7 +29,7 @@ function SearchBar() {
             </Link>
             <div className="group relative inline-block">
                 <div className="flex -space-x-3 items-center cursor-pointer">
-                    <div className='font-light text-[.45rem] text-gray-500'> Shop by category</div>
+                    <div className='font-light text-[.65rem] text-gray-500'> Shop by category</div>
                     <IoIosArrowDown />
                 </div>
                 <div className="text-[.65rem] hidden group-hover:flex group-hover:flex-col absolute z-10 bg-black text-white p-2 shadow-lg rounded-lg right-0">
@@ -49,7 +49,7 @@ function SearchBar() {
                     />
                 </div>
                 <div className="group relative inline-block h-full">
-                    <div className='flex w-[100%] cursor-pointer text-[.55rem] font-light px-4 items-center gap-6 border-l border-gray-200 py-2'>
+                    <div className='flex w-[100%] cursor-pointer text-[.65rem] font-light px-4 items-center gap-6 border-l border-gray-200 py-2'>
                         <div className='flex items-center gap-1 text-gray-600'>
                             <div>All</div>
                             <div>categories</div>
