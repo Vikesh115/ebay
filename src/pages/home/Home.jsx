@@ -28,11 +28,11 @@ function Home() {
       </div>
 
       {/* Box-2 */}
-      <div className="px-6 py-4">
-        <div className="flex-shrink-0 w-full bg-amber-500 h-[150px] md:h-[240px] rounded-xl relative overflow-hidden ">
+      <div className=" md:px-6 py-4">
+        <div className="flex-shrink-0 w-full bg-amber-500 md:h-[240px] h-[200px] md:rounded-xl relative overflow-hidden ">
           {/* Background Content */}
-          <div className="absolute inset-0 flex flex-col pt-12 pl-6 md:pl-12 p-3 z-10">
-            <h2 className="text-2xl md:text-3xl  font-bold mb-2 w-full md:w-[40%]">
+          <div className="absolute inset-0 flex flex-col pt-8 py-2 pl-6 z-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2 w-full md:w-[40%]">
               The force is strong with this one
             </h2>
             <p className="text-xs md:text-sm w-full md:w-[40%]">
@@ -40,14 +40,14 @@ function Home() {
             </p>
             <Link
               to={'/'}
-              className='flex justify-center cursor-pointer my-4 px-2 py-1.5 font-bold rounded-3xl bg-black text-white w-32 hover:bg-gray-800 transition-colors'
+              className='flex justify-center cursor-pointer py-1 my-2 font-bold rounded-3xl bg-black text-white w-32 hover:bg-gray-800 transition-colors'
             >
               Find yours
             </Link>
           </div>
 
           {/* Image Gallery */}
-          <div className='absolute right-0 top-0 w-full md:w-[50%] h-full'>
+          <div className='absolute md:block hidden right-0 top-0 w-full md:w-[50%] h-full'>
             <div className="relative h-full">
               {/* First Image */}
               <img
