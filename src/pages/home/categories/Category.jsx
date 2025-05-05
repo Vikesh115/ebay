@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Category() {
     const { categories = [] } = useSelector((state) => state.product)
-    const firstFiveCategories = categories.slice(0, 5);
+    const firstFiveCategories = categories.slice(0, 7);
 
     // Default category images if category image is missing
     const defaultCategoryImages = {

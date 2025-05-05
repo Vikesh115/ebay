@@ -148,7 +148,11 @@ function Navbar({ handleLogout }) {
                         </Link>
 
                         {/* Cart Dropdown Content */}
-                        {cartCount > 0 ? (
+                        {!user ? (
+                            <div className="hidden group-hover:flex items-center whitespace-nowrap text-sm absolute z-10 text-gray-500 bg-white p-4 shadow-lg rounded-lg right-0 gap-1">
+                                Please <Link to="/login" className='underline text-black font-medium'>sign in</Link> to view your cart
+                            </div>
+                        ) : cartCount > 0 ? (
                             <div className="hidden group-hover:block absolute z-10 right-0 w-64 bg-white p-4 shadow-lg rounded-lg">
                                 <div className="space-y-3 max-h-80 overflow-y-auto">
                                     {cart.slice(0, 5).map((item) => (

@@ -30,9 +30,9 @@ function Wishlist() {
                             <img src={item.images} alt={item.title} className='flex h-[100px] md:h-[200px] w-[30%] bg-black ml-8' />
                             <div className='flex flex-col w-[100%] p-2'>
                                 <div className='flex text-xs md:text-base w-[100%] mt-4'>{item.title}</div>
-                                <div className='flex font-bold items-center'><MdOutlineCurrencyRupee />{item.price}</div>
+                                <div className='flex font-bold items-center'>${item.price}</div>
                                 <p className='flex font-medium items-center'>Quantity: {item.quantity}</p>
-                                <p className='flex md:font-bold items-center'>Total: <MdOutlineCurrencyRupee />{(item.price * item.quantity).toFixed(2)}</p>
+                                <p className='flex md:font-bold items-center'>Total: ${(item.price * item.quantity).toFixed(2)}</p>
                                 <div className="flex flex-row items-center justify-evenly">
                                     <button onClick={() => handleAddToCart(item)} className=' cursor-pointer rounded-2xl h-[60px] w-[60%] md:h-[40px] md:w-[60%] m-4 bg-teal-600 text-black'>Add to Cart</button>
                                     <button
